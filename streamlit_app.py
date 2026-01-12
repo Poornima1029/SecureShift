@@ -315,6 +315,7 @@ elif page == "📊 Live Analytics":
     
     st.caption("🔄 **LIVE** - Updates every 2 seconds from server")
 
+
 # === SECURITY & SETTINGS ===
 elif page == "🔐 Security Audit":
     st.markdown("## 🔐 Security & Compliance")
@@ -331,3 +332,6 @@ else:  # Settings
     st.divider()
     st.markdown("## 🛡️ Security")
     st.info("**Encryption**: AES-256 CBC\n**PFS**: Ephemeral keys\n**Zero-knowledge**: Port isolation")
+
+st.markdown("---")
+st.markdown('<div style="text-align: center; color: #64748b;">🔒 SecureShift Enterprise | Vipparthi Poornima - CSE Final Year</div>', unsafe_allow_html=True)
