@@ -297,31 +297,15 @@ elif page == "📊 Live Analytics":
     
     st.divider()
     
-    # 📋 RECENT MESSAGES TABLE
-    st.markdown("### 📋 Recent Messages Sent")
-    if st.session_state.messages_history:
-        recent = st.session_state.messages_history[-10:]
-        df_data = {
-            "🕒 Time": [msg['time'] for msg in recent],
-            "📨 Port": [msg['port'] for msg in recent],
-            "💬 Preview": [msg['message'] for msg in recent]
-        }
-        st.dataframe(df_data, use_container_width=True)
-    else:
-        st.info("👆 Send messages from Alice tab to see real activity!")
-    
-    st.divider()
-    
+    col_chart1, col_chart2 = st.columns(2)      
     # LIVE PORT TABLE
-    st.markdown("### 🔌 Live Port Status")
-    st.markdown("| Port | Messages | Status | Activity |")
-    st.markdown("|------|----------|--------|----------|")
-    
-    for p in range(9000, 9010):
-        msg_count = stats.get('ports_data', {}).get(p, {}).get('count', 0)
-        status = "🟢 Active" if msg_count > 0 else "⚪ Idle"
-        activity = "🔥 High" if msg_count > 20 else "📉 Low"
-        st.markdown(f"| **{p}** | **{msg_count}** | {status} | {activity} |")
+    with col_chart1:
+        st.markdown("### 📡 Live Port Messages")
+        table_data = []
+        for p in range(9000, 9010):
+            count = stats.get('ports_data', {}).get(p, {}).get('count', 0)
+            table_data.append([f"P{p-8999}", count])
+        st.table(table_data)
     
     # LIVE CHARTS
     col_chart1, col_chart2 = st.columns(2)
